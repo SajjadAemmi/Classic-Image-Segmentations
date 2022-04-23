@@ -1,0 +1,25 @@
+clc
+clear all
+close all
+image = imread('mri.jpg');
+image = im2double(image);
+image = rgb2gray(image);
+[r,c] = size(image);
+T_image = zeros(r,c);
+[x,y] = meshgrid(1:c,1:r);
+
+T = [cosd(25), -sind(25), 30;...
+    sind(25), cosd(25), 12;...
+    0,0,1];
+
+for i = 1:r
+    for j = 1:c
+
+        [T_x(i,c);T_y(r,c);one] = T * [i;j;1];
+        
+        
+    end
+end
+
+[newX newY] = T(x,y,25,30,12);
+T_image = interp2(image,newX,newY,'bilinear');
